@@ -16,7 +16,8 @@ function DF:OnInitialize()
     -- Called when the addon is loaded
     self.db = LibStub('AceDB-3.0'):New('DragonflightUIDB', defaults, true)
     db = self.db.profile
-    self:SetupOptions()
+    -- self:SetupOptions()
+    self:SetupNewOptions()
     self:RegisterSlashCommands()
 end
 

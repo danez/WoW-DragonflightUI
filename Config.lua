@@ -45,12 +45,48 @@ function DF:RegisterModuleOptions(name, options)
                                                                            'DragonflightUI')
 end
 
+function DF:SetupNewOptions()
+    self:Print('SetupNewOptions')
+    local category, layout = Settings.RegisterVerticalLayoutCategory("DragonflightUI");
+    Settings.RegisterAddOnCategory(category);
+
+    self.optFrames = {}
+    self.optFrames['DragonflightUI'] = category
+end
+
+function DF:RegisterNewModuleOptions(name, options)
+    self:Print('RegisterNewModuleOptions()', name, options)
+    -- local category = Settings.GetCategory("DragonflightUI")
+    local category = self.optFrames['DragonflightUI']
+
+    local subcategory, layout = Settings.RegisterVerticalLayoutSubcategory(category, name);
+    Settings.RegisterAddOnCategory(subcategory);
+
+    -- layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(NAMES_LABEL));
+    -- Settings.SetupCVarCheckBox(subcategory, "UnitNameOwn", UNIT_NAME_OWN, OPTION_TOOLTIP_UNIT_NAME_OWN);
+
+    -- DF:AddHeaderToLayout(layout, 'Test')
+    return subcategory, layout
+end
+
+function DF:AddHeaderToLayout(layout, header)
+    layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(header));
+end
+
 function DF:RegisterSlashCommands()
     self:RegisterChatCommand('df', 'SlashCommand')
     self:RegisterChatCommand('dragonflight', 'SlashCommand')
 
     -- "default" quick reload command
     self:RegisterChatCommand('rl', 'ReloadCommand')
+    self:RegisterChatCommand('test', 'TestCommand')
+end
+
+function DF:TestCommand(msg)
+    -- Settings.OpenToCategory('DragonFlightUINEW')
+    -- Settings.OpenToCategory('DragonFlightUINEW')
+    -- InterfaceOptionsFrame_OpenToCategory("DragonFlightUINEW")
+
 end
 
 function DF:SlashCommand(msg)

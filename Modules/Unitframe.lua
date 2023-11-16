@@ -448,7 +448,7 @@ function Module:OnInitialize()
     db = self.db.profile
 
     self:SetEnabledState(DF:GetModuleEnabled(mName))
-    DF:RegisterModuleOptions(mName, options)
+    DF:RegisterNewModuleOptions(mName, options)
 end
 
 function Module:OnEnable()

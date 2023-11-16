@@ -140,7 +140,8 @@ function Module:OnInitialize()
     db = self.db.profile
 
     self:SetEnabledState(DF:GetModuleEnabled(mName))
-    DF:RegisterModuleOptions(mName, options)
+    local cat, layout = DF:RegisterNewModuleOptions(mName, options)
+    Module.CreateOptions(cat, layout)
 end
 
 function Module:OnEnable()
@@ -155,6 +156,10 @@ function Module:OnEnable()
 end
 
 function Module:OnDisable()
+end
+
+function Module:CreateOptions(cat, layout)
+
 end
 
 function Module:ApplySettings()
