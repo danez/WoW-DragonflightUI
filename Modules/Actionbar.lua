@@ -141,7 +141,7 @@ function Module:OnInitialize()
 
     self:SetEnabledState(DF:GetModuleEnabled(mName))
     local cat, layout = DF:RegisterNewModuleOptions(mName, options)
-    Module.CreateOptions(cat, layout)
+    Module:CreateOptions(cat, layout)
 end
 
 function Module:OnEnable()
@@ -158,8 +158,18 @@ end
 function Module:OnDisable()
 end
 
-function Module:CreateOptions(cat, layout)
+function Module:CreateOptions(category, layout)
 
+    local variable = "toggle"
+    local name = "Enable Module"
+    local tooltip = "This is a tooltip for the checkbox."
+    local defaultValue = true
+
+    local setting = Settings.RegisterAddOnSetting(category, name, variable, type(defaultValue), defaultValue)
+    Settings.CreateCheckBox(category, setting, tooltip)
+    -- Settings.SetOnValueChangedCallback(variable, OnSettingChanged)
+
+    DF:Dump(DF.db)
 end
 
 function Module:ApplySettings()

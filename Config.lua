@@ -52,6 +52,17 @@ function DF:SetupNewOptions()
 
     self.optFrames = {}
     self.optFrames['DragonflightUI'] = category
+
+    do
+        local variable = "toggle"
+        local name = "Enable Module"
+        local tooltip = "This is a tooltip for the checkbox."
+        local defaultValue = true
+
+        local setting = Settings.RegisterAddOnSetting(category, name, variable, type(defaultValue), defaultValue)
+        Settings.CreateCheckBox(category, setting, tooltip)
+        -- Settings.SetOnValueChangedCallback(variable, OnSettingChanged)
+    end
 end
 
 function DF:RegisterNewModuleOptions(name, options)
@@ -66,6 +77,7 @@ function DF:RegisterNewModuleOptions(name, options)
     -- Settings.SetupCVarCheckBox(subcategory, "UnitNameOwn", UNIT_NAME_OWN, OPTION_TOOLTIP_UNIT_NAME_OWN);
 
     -- DF:AddHeaderToLayout(layout, 'Test')
+
     return subcategory, layout
 end
 
